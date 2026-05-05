@@ -595,6 +595,37 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* Prevent loan-calculator FOUC: show a skeleton until loaded. */
+.loan-calculator.block[data-block-status="initialized"],
+.loan-calculator.block[data-block-status="loading"] {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.loan-calculator.block[data-block-status="initialized"] > *,
+.loan-calculator.block[data-block-status="loading"] > * {
+  visibility: hidden;
+}
+
+.loan-calculator.block[data-block-status="initialized"]::before,
+.loan-calculator.block[data-block-status="loading"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(#e5e7eb, #e5e7eb) 24px 24px / 300px 26px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 24px 70px / calc(100% - 48px) 220px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 24px 320px / calc(100% - 48px) 170px no-repeat;
+  z-index: 2;
+}
+
+.loan-calculator.block[data-block-status="loaded"] {
+  min-height: 0;
+  overflow: visible;
+}
+
 /* Prevent user-registration FOUC: reserve space until loaded. */
 .user-registration.block[data-block-status="initialized"],
 .user-registration.block[data-block-status="loading"] {
@@ -2133,34 +2164,6 @@ body.securbank-theme main :is(ul, menu) ul {
   list-style-type: disc;
 }
 
-.loan-calculator-wrapper {
-  position: relative;
-  min-height: 420px;
-  display: block !important;
-}
-
-.loan-calculator-wrapper:not(.show) .loan-calculator {
-  visibility: hidden;
-}
-
-.loan-calculator-wrapper:not(.show)::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  background:
-    linear-gradient(#e5e7eb, #e5e7eb) 24px 24px / 300px 26px no-repeat,
-    linear-gradient(#e5e7eb, #e5e7eb) 24px 70px / calc(100% - 48px) 220px no-repeat,
-    linear-gradient(#e5e7eb, #e5e7eb) 24px 320px / calc(100% - 48px) 170px no-repeat;
-  animation: none !important;
-  transition: none !important;
-  z-index: 2;
-}
-
-.loan-calculator-wrapper.show {
-  display: block !important;
-  min-height: 0;
-}
 
 #offer-bar {
   background-color: #01153a;
