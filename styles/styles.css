@@ -859,12 +859,10 @@ footer .footer[data-block-status="loaded"] {
   overflow: visible;
 }
 
-/* Prevent create-account FOUC: show a skeleton until loaded. */
+/* Prevent create-account FOUC: reserve space until loaded. */
 .create-account.block[data-block-status="initialized"],
 .create-account.block[data-block-status="loading"] {
-  position: relative;
   min-height: 500px;
-  overflow: hidden;
 }
 
 .create-account.block[data-block-status="initialized"] > *,
@@ -872,21 +870,23 @@ footer .footer[data-block-status="loaded"] {
   visibility: hidden;
 }
 
-.create-account.block[data-block-status="initialized"]::before,
-.create-account.block[data-block-status="loading"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  background:
-    linear-gradient(#e2e8f0, #e2e8f0) 24px 24px / calc(100% - 48px) 40px no-repeat,
-    linear-gradient(#e2e8f0, #e2e8f0) 24px 88px / calc(100% - 48px) 380px no-repeat;
-  z-index: 2;
-}
-
 .create-account.block[data-block-status="loaded"] {
   min-height: 0;
-  overflow: visible;
+}
+
+/* Prevent order-summary FOUC: reserve space until loaded. */
+.order-summary.block[data-block-status="initialized"],
+.order-summary.block[data-block-status="loading"] {
+  min-height: 500px;
+}
+
+.order-summary.block[data-block-status="initialized"] > *,
+.order-summary.block[data-block-status="loading"] > * {
+  visibility: hidden;
+}
+
+.order-summary.block[data-block-status="loaded"] {
+  min-height: 0;
 }
 
 h1,
