@@ -245,9 +245,5 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => row.remove());
   block.innerHTML = '';
   block.appendChild(contentRoot);
-  const wrapperElement = block.closest('.loan-calculator-wrapper');
-  if (wrapperElement) {
-    wrapperElement.classList.add('show');
-  }
   block.classList.remove('loan-calculator-block--loading');
 }
