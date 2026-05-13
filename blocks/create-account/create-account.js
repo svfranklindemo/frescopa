@@ -388,6 +388,14 @@ function attachCreateAccountSubmitHandler(block, redirectUrl) {
           window.dataLayer.createAccountConsent = true;
         }
 
+        if (form.querySelector('[name="frescopaOwner"]')) {
+          const productListItems = {
+            mainCategory: formData.frescopaOwner === 'yes' ? 'Frescopa Smart Coffee Machine' : '',
+          };
+          if (window.dataLayer) window.dataLayer.productListItems = productListItems;
+          if (typeof window.updateDataLayer === 'function') window.updateDataLayer({ productListItems }, false);
+        }
+
         syncFormDataLayer(form, DEFAULT_FORM_FIELD_MAP);
         clearProductObject();
 
