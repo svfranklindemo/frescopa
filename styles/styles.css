@@ -2283,3 +2283,6 @@ padding-left: 0 !important;
     padding-left: 50px !important;
     padding-right: 50px !important;
 }
+.form-message.error-message {
+  display: none;
+}
